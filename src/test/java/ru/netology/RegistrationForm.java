@@ -19,14 +19,10 @@ class RegistrationForm {
     void shouldSendFormWithLoad() {
         open("http://localhost:9999");
         $("[data-test-id='city'] input").setValue("Уфа");
-        //текущую дату ввести и прибавить 3
         LocalDate currentDate = LocalDate.now().plusDays(3);
-        //отформатировать дату
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String expectedDate = currentDate.format(formatter);
-        //дважды выделить и стереть
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        //найти поле
         $("[data-test-id='date'] input").setValue(expectedDate);
         $("[data-test-id='name'] input").setValue("Ваш-кин Павел");
         $("[data-test-id='phone'] input").setValue("+78005553535");
